@@ -1,0 +1,25 @@
+---
+- name: update web and db servers
+  hosts: webservers
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    yum:
+      name: wireshark
+      state: absent
+
+- name: update db server
+  hosts: db
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - name: delete wireshark
+    yum:
+      name: wireshark
+      state: absent
+      autoremove: yes
+      allow_downgrade: yes
+
