@@ -1,0 +1,38 @@
+- name: play for all servers
+  hosts: all
+  become: yes
+
+  tasks:
+    # - name: update yum repo
+      # yum:
+       # name: "*"
+       # state: present
+       # update_cache: yes
+
+     - name: install nfs client, chrony
+       yum:
+         name: "{{ item }}"
+         state: present
+       loop:
+          - nfs-utils
+          - chrony
+          - httpd
+     - name: start and enable chronyd
+       service:
+          name: chronyd
+          enabled: yes
+          state: started
+     - name: install  mysql
+       yum:
+          name: mysql-server
+          state: installed
+     - name: start and enable mysql
+       service:
+          name: mysqld
+          enabled: yes
+          state: started
+     - name: start and enable httpd
+       service: 
+          name: httpd
+          enabled: yes
+          state: started
