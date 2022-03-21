@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+environment {
+        ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+}
 stages {
    stage ('Initial cleanup') {
 	steps {
@@ -19,7 +22,7 @@ stages {
   stage('Prepare Ansible for Execution') {
      steps {
        sh 'echo ${WORKSPACE}'
-       sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg
+       sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
 
   }
 
