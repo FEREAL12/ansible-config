@@ -8,6 +8,7 @@ stages {
    stage ('Initial cleanup') {
     steps {
       sh 'ls -l'
+      sh 'pwd'
       dir("${WORKSPACE}"){
         deleteDir()
       }
@@ -24,17 +25,16 @@ stages {
   stage('Prepare Ansible for Execution') {
      steps {
        sh 'echo ${WORKSPACE}'
-       sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
 
   }
 
 }
   stage('Run Ansible Playbook'){
-	steps {
-		ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'  
-
-     }
-   }
+	  steps {
+      sh 'pwd'
+		  ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'  
+    }
+  }
 
  stage ('Clean Worskpace after build'){
 	steps{
