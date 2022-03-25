@@ -6,12 +6,14 @@ environment {
 }
 stages {
    stage ('Initial cleanup') {
-	steps {
-	  dir("${WORKSPACE}"){
-		deleteDir()
-}
-}
-}
+    steps {
+      sh 'ls -l'
+      dir("${WORKSPACE}"){
+        deleteDir()
+      }
+      sh 'ls -l'
+    }
+  }
 
   stage('Checkout SCM') {
      steps{
