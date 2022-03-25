@@ -1,5 +1,5 @@
 ---
   - hosts: db
     roles:
-        - { role: geerlingguy.mysql }
+        - mysql
     become: true
