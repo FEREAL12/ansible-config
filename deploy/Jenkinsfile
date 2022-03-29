@@ -1,49 +1,53 @@
 pipeline {
     agent any
 
-  stages {
-    stage ('Initial cleanup') {
-	steps {
-	  dir("${WORKSPACE}"){
-		deleteDir()
-   }
+environment {
+        ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+}
+
+parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
+
+stages {
+   stage ('Initial cleanup') {
+    steps {
+      sh 'ls -l'
+      sh 'pwd'
+      dir("${WORKSPACE}"){
+        deleteDir()
+      }
+      sh 'ls -l'
+    }
+  }
+
+  stage('Checkout SCM') {
+     steps{
+	git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/FEREAL12/ansible-config.git'
   }
 }
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
-      }
-    }
 
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
+  stage('Prepare Ansible for Execution') {
+     steps {
+       sh 'echo ${WORKSPACE}'
 
-   stage('package') {
-	steps {
-	  script {
-	     sh 'echo "Packaging App"'
-   }
- }
-}
-
-  stage('deploy') {
-	steps {
-	 script {
-	   sh 'echo "deploying to dev"'
   }
- }
+
 }
-   stage ('cleanup') {
-	steps {
-	   cleanWs()
- }
-}
+  stage('Run Ansible Playbook'){
+	  steps {
+      sh 'pwd'
+		  ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'  
     }
+  }
+
+ stage ('Clean Worskpace after build'){
+	steps { 
+         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+
+   }
+  }
+
+ }
+
 }
