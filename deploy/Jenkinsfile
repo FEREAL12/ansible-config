@@ -37,7 +37,7 @@ stages {
   }
 
  stage ('Clean Worskpace after build'){
-	steps{
+	steps { 
          CleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deletDirs: true)
 
    }
