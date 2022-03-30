@@ -17,7 +17,7 @@
 
 - name: reload the /etc/profile
   shell: source ~/.bash_profile
-
+  
 - name: add the repository key to repos list
   ansible.builtin.get_url:
    url: https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo
