@@ -1,4 +1,4 @@
-[artifact]
+[artifactory]
  172.31.37.71 ansible_ssh_user='ec2-user'
 
 [jenkins]
