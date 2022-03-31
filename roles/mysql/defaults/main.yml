@@ -107,16 +107,16 @@ mysql_config_include_files: []
 
 # Databases.
 mysql_databases:
-   - name: tooling
+   - name: homestead
      collation: utf8_general_ci
      encoding: utf8
      replicate: 1
 
 # Users.
 mysql_users:
-   - name: webaccess
-     host: 0.0.0.0
-     password: secret
+   - name: homestead
+     host: 172.31.47.241
+     password: sePret^i
      priv: '*.*:ALL,GRANT'
 
 # Replication settings (replication is only enabled if master/user have values).
