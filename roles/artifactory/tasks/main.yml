@@ -10,10 +10,10 @@
       - unzip
     state: present
 
-# - name: Configuring java path
-#   ansible.builtin.template:
-#     src: templates/bash-profile.j2
-#     dest: .bash_profile
+- name: Configuring java path
+  ansible.builtin.template:
+    src: templates/bash-profile.j2
+    dest: .bash_profile
 
 - name: reload the /etc/profile
   shell: source ~/.bash_profile
