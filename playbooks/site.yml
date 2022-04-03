@@ -4,8 +4,8 @@
 #   tags:
 #     - always
 
-- name: import database file  
-  import_playbook: ../static-assignments/db.yml
+# - name: import database file  
+#   import_playbook: ../static-assignments/db.yml
 
 # - name: import webservers file
 #   import_playbook: ../static-assignments/webservers.yml
@@ -22,8 +22,8 @@
 # - name: sonar assignment
 #   ansible.builtin.import_playbook: ../static-assignments/sonar.yml
 
-# - hosts: todo
-# - name: Deploy the todo application
-#   ansible.builtin.import_playbook: ../static-assignments/deployment.yml
+- hosts: to-do
+- name: Deploy the todo application
+  ansible.builtin.import_playbook: ../static-assignments/deployment.yml
 
 
