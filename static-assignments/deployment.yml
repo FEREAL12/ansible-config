@@ -7,7 +7,7 @@
     - name: Install remi and rhel repo
       ansible.builtin.yum:
         name:
-          - https://dl.fedoraproject.org/pub/epel/epel-release-;atest-8.noarch.rpm
+          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
           - dnf-utils
           - http://rpms.remirepo.net/enterprise/remi-release-8.rom
         disable_gpg_check: yes
@@ -51,7 +51,7 @@
         url: http://http://3.144.100.180//artifactory/FEREAL12/php-todo
         dest: /home/ec2-user
         url_username: admin
-        url_password: Fereal_group12
+        url_password: AP9iaLZLdx9hAmz7JS3JSwuxBX9
 
     - name: unzip the artifacts
       ansible.builtin.unarchive:
