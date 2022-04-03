@@ -32,7 +32,7 @@
           - unzip
           - php-common
           - php-mbstring
-          - php-apache
+          - php-opcache
           - php-intl
           - php-xml
           - php-fpm
