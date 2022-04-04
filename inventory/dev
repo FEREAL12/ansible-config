@@ -10,5 +10,5 @@
 [artifactory]
 172.31.37.71
 
-[Sonar]
-172.31.26.199 ansible_ssh_user='ec2-user'
+[sonar]
+172.31.23.24 ansible_ssh_user='ec2-user'
