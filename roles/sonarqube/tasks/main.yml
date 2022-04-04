@@ -47,6 +47,8 @@ ansible.builtin.apt_repository:
     state: present
     allow_unathenticated: yes
 
+- import_tasks: postgresql.yml
+
 - name: Ensure group sonar exists
   ansible.builtin.group:
     name: sonar
@@ -59,7 +61,8 @@ ansible.builtin.apt_repository:
     name: sonar
     state: started
     enabled: yes
-    
+
+- name: 
 
 # - name: "Create SonarQube system group"
 #   group:
