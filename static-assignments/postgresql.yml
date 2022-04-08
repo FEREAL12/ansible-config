@@ -37,7 +37,7 @@
 
 - name: Create user sonarqube
   become_user: postgres
-  community.postgresql_user:
+  community.postgresql.postgresql_user:
     db: sonarqube
     name: sonar
     password: sonar

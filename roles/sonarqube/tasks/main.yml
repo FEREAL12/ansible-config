@@ -9,6 +9,7 @@
   command: sysctl -w fs.file-max=65536
 
 - name: Add max limits
+  become: true
 ansible.builtin.lineinfile:
   path: /etc/security/limits.conf
   line: 
@@ -17,16 +18,16 @@ ansible.builtin.lineinfile:
   create: yes
 
 - name: Add ppa repository
-ansible.builtin.apt_repository:
-  repo: ppa:linuxuprising/java
+  ansible.builtin.apt_repository:
+    repo: ppa:linuxuprising/java
 
 - name: install python3
-  ansible.builtin.apt:
+  ansible.builtin.yum:
     name: 
       - python3
       - python3-pip
       - python3-dev
-      libpq-dev
+      - libpq-dev
     state: present
 
 - name: Install setuptools
@@ -61,8 +62,6 @@ ansible.builtin.apt_repository:
     name: sonar
     state: started
     enabled: yes
-
-- name: 
 
 # - name: "Create SonarQube system group"
 #   group:
